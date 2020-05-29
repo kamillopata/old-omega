@@ -11,7 +11,8 @@
       type="password"
       placeholder="password"
     ><br>
-    <button @click="login">
+    <p>{{ error }}</p>
+    <button @click="register">
       Register
     </button>
   </div>
@@ -25,27 +26,26 @@ export default {
 
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'whoopi5@gmail.com',
+      password: 'password',
+      error: '',
     };
   },
 
   methods: {
-    async login() {
-      console.log('login');
-      const response = await firebase.auth()
-        .createUserWithEmailAndPassword(this.email, this.password);
-      console.log('query response');
-      console.log(response);
+    async register() {
+      try {
+        const response = await firebase.auth()
+          .createUserWithEmailAndPassword(this.email, this.password);
+        console.log(response.user);
+      } catch (exception) {
+        this.error = exception.message;
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.register {
-  h1 {
-    background: red;
-  }
-}
+
 </style>
