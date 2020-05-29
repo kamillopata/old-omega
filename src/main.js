@@ -4,7 +4,16 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-console.log(process.env);
+const requiredEnvironmentalVariables = [
+  process.env.VUE_APP_FIREBASE_WEB_API_KEY,
+  process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  process.env.VUE_APP_FIREBASE_MESSAGING_SEND_ID,
+];
+
+if (requiredEnvironmentalVariables.filter((variable) => !variable).length) {
+  console.log('environmental variables', requiredEnvironmentalVariables);
+  throw new Error('Empty environment variable');
+}
 
 firebase.initializeApp({
   apiKey: `${process.env.VUE_APP_FIREBASE_WEB_API_KEY}`,
