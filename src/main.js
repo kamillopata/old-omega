@@ -3,17 +3,16 @@ import firebase from 'firebase';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import * as PARAMS from '../params';
 
-Vue.config.productionTip = false;
+console.log(process.env);
 
 firebase.initializeApp({
-  apiKey: `${PARAMS.YOUR_API_KEY}`,
-  authDomain: `${PARAMS.YOUR_PROJECT_ID}.firebaseapp.com`,
-  databaseURL: `https://${PARAMS.YOUR_PROJECT_ID}.firebaseio.com`,
-  projectId: `${PARAMS.YOUR_PROJECT_ID}`,
-  storageBucket: `${PARAMS.YOUR_PROJECT_ID}.appspot.com`,
-  messagingSenderId: `${PARAMS.YOUR_MESSAGING_SEND_ID}`,
+  apiKey: `${process.env.VUE_APP_FIREBASE_WEB_API_KEY}`,
+  authDomain: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+  databaseURL: `https://${process.env.VUE_APP_FIREBASE_PROJECT_ID}.firebaseio.com`,
+  projectId: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}`,
+  storageBucket: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}.appspot.com`,
+  messagingSenderId: `${process.env.VUE_APP_FIREBASE_MESSAGING_SEND_ID}`,
 });
 
 new Vue({
