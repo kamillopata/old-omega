@@ -39,6 +39,8 @@ export default {
         uid: getters.uid,
         name: getters.name,
         group: getters.group,
+        location: event.location,
+        tags: event.tags.split(' '),
       });
     },
     async login({ commit, getters }, event) {

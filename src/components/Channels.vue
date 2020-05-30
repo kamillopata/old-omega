@@ -4,13 +4,24 @@
       {{ $t('channels.title') }}
       {{ $t(`channels.${channelType}`) }}
     </h2>
-    <p
+    <div
       v-for="channel in channels"
       :key="channel.uid"
       :class="{ 'channel': true, 'active': channel.uid === active }"
       @click="choose(channel)"
-      v-text="channel.name"
-    />
+    >
+      <p
+        class="name"
+        v-text="channel.name"
+      />
+      <ul class="tags">
+        <ol
+          v-for="tag in channel.tags"
+          :key="tag"
+          v-text="tag"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 

@@ -8,6 +8,8 @@
     "name": "Name",
     "email": "Email",
     "password": "Passowrd",
+    "location": "Location",
+    "tags": "Tags",
     "cta": "Register"
   },
   "login": {

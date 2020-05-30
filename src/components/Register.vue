@@ -16,6 +16,18 @@
       type="password"
       :placeholder="$t('register.password')"
     ><br>
+    <template v-if="email.includes('+stylist')">
+      <input
+        v-model.trim="location"
+        type="text"
+        :placeholder="$t('register.location')"
+      ><br>
+      <input
+        v-model.trim="tags"
+        type="text"
+        :placeholder="$t('register.tags')"
+      ><br>
+    </template>
     <p v-text="error" />
     <button
       v-t="'register.cta'"
@@ -30,10 +42,12 @@ export default {
 
   data() {
     return {
-      name: null,
-      email: null,
-      password: null,
-      error: null,
+      name: '',
+      email: '',
+      password: '',
+      location: '',
+      tags: '',
+      error: '',
     };
   },
 
@@ -44,6 +58,8 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
+        location: this.location,
+        tags: this.tags,
       };
 
       try {
