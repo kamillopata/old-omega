@@ -5,6 +5,7 @@
   },
   "register": {
     "title": "Registration",
+    "name": "Name",
     "email": "Email",
     "password": "Passowrd",
     "cta": "Register"

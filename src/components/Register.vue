@@ -2,6 +2,11 @@
   <div>
     <h1 v-t="'register.title'" />
     <input
+      v-model.trim="name"
+      type="text"
+      :placeholder="$t('register.name')"
+    ><br>
+    <input
       v-model.trim="email"
       type="email"
       :placeholder="$t('register.email')"
@@ -25,6 +30,7 @@ export default {
 
   data() {
     return {
+      name: null,
       email: null,
       password: null,
       error: null,
@@ -35,6 +41,7 @@ export default {
     async register() {
       this.error = null;
       const event = {
+        name: this.name,
         email: this.email,
         password: this.password,
       };
