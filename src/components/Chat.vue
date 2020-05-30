@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="chat">
+    <h2>
+      {{ $t('chat.title') }}
+      {{ active.name }}
+    </h2>
     {{ active }}
   </div>
 </template>

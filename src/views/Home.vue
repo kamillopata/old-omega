@@ -3,7 +3,7 @@
     <template v-if="uid">
       <Logout />
       <Channels @switchChannel="activeChannel = $event" />
-      <Chat :active="activeChannel" />
+      <Chat v-if="activeChannel" :active="activeChannel" />
     </template>
     <template v-else>
       <Register />
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      activeChannel: {},
+      activeChannel: null,
     };
   },
   computed: {

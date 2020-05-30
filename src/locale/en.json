@@ -23,5 +23,8 @@
     "title": "Available",
     "customers": "Customers",
     "stylists": "Stylists"
+  },
+  "chat": {
+    "title": "Your are talking to"
   }
 }
