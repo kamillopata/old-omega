@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import firebase from 'firebase';
-
 export default {
   name: 'Register',
 
@@ -34,10 +32,13 @@ export default {
 
   methods: {
     async register() {
+      const event = {
+        email: this.email,
+        password: this.password,
+      };
+
       try {
-        const response = await firebase.auth()
-          .createUserWithEmailAndPassword(this.email, this.password);
-        console.log(response.user);
+        await this.$store.dispatch('user/register', event);
       } catch (exception) {
         this.error = exception.message;
       }

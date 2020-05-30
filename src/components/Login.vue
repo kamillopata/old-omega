@@ -12,15 +12,13 @@
       placeholder="password"
     ><br>
     <p>{{ error }}</p>
-    <button @click="register">
+    <button @click="login">
       Login
     </button>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
-
 export default {
   name: 'Login',
 
@@ -33,11 +31,14 @@ export default {
   },
 
   methods: {
-    async register() {
+    async login() {
+      const event = {
+        email: this.email,
+        password: this.password,
+      };
+
       try {
-        const response = await firebase.auth()
-          .signInWithEmailAndPassword(this.email, this.password);
-        console.log(response.user);
+        await this.$store.dispatch('user/login', event);
       } catch (exception) {
         this.error = exception.message;
       }
