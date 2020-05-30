@@ -2,8 +2,8 @@
   <div class="home">
     <template v-if="uid">
       <Logout />
-      <Channels />
-      <Chat />
+      <Channels @switchChannel="activeChannel = $event" />
+      <Chat :active="activeChannel" />
     </template>
     <template v-else>
       <Register />
@@ -29,6 +29,11 @@ export default {
     Logout,
     Channels,
     Chat,
+  },
+  data() {
+    return {
+      activeChannel: {},
+    };
   },
   computed: {
     ...mapGetters({

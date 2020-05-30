@@ -1,12 +1,19 @@
 <template>
   <div>
-    Chat
+    {{ active }}
   </div>
 </template>
 
 <script>
 export default {
   name: 'Chat',
+
+  props: {
+    active: {
+      type: Object,
+      required: true,
+    },
+  },
 
   data() {
     return {
