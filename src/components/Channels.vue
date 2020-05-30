@@ -24,6 +24,7 @@ export default {
 
   data() {
     return {
+      users: {},
       channels: [],
       active: null,
     };
@@ -39,16 +40,18 @@ export default {
   },
 
   async created() {
-    const snapshot = await firebase.database().ref('/users/').once('value');
-    snapshot.forEach((channelSnapshot) => {
-      const channel = channelSnapshot.val();
-      if (channel.group !== this.group) {
-        this.channels.push(channel);
-      }
-    });
+    const users = firebase.database().ref('/users/');
+    users.on('child_added', (snapshot) => this.updateChannel(snapshot.key, snapshot.val()));
   },
 
   methods: {
+    updateChannel(key, user) {
+      if (user.group === this.group) {
+        return;
+      }
+      this.users[key] = user;
+      this.channels = Object.keys(this.users).map((index) => this.users[index]);
+    },
     choose(channel) {
       this.active = channel.uid;
       this.$emit('switchChannel', channel);
