@@ -24,8 +24,8 @@ export default {
 
   data() {
     return {
-      email: 'whoopi5@gmail.com',
-      password: 'password',
+      email: '',
+      password: '',
       error: '',
     };
   },
