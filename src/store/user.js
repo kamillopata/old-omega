@@ -1,8 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 const dectectStylist = (email) => email.includes('+stylist');
-const detectCategory = (email) => (dectectStylist(email) ? 'stylist' : 'customer');
+const detectGroup = (email) => (dectectStylist(email) ? 'stylist' : 'customer');
 
 export default {
   namespaced: true,
@@ -10,60 +11,66 @@ export default {
     uid: null,
     name: null,
     email: null,
-    category: null,
+    group: null,
   },
   getters: {
     uid(state) {
       return state.uid;
     },
-    name(state) {
-      return state.name;
-    },
     email(state) {
       return state.email;
     },
-    category(state) {
-      return state.category;
+    name(state) {
+      return state.name;
+    },
+    group(state) {
+      return state.group;
     },
   },
   actions: {
-    async register({ commit }, event) {
+    async register({ commit, getters }, event) {
       const response = await firebase.auth()
         .createUserWithEmailAndPassword(event.email, event.password);
-      commit('user', response.user);
-      await response.user.updateProfile({
-        displayName: event.name,
-      });
+      commit('uid', response.user.uid);
+      commit('email', response.user.email);
       commit('name', event.name);
+      commit('group', detectGroup(getters.email));
+      firebase.database().ref(`users/${getters.uid}`).set({
+        name: getters.name,
+        group: getters.group,
+      });
     },
-    async login({ commit }, event) {
-      const responseLogin = await firebase.auth()
+    async login({ commit, getters }, event) {
+      const response = await firebase.auth()
         .signInWithEmailAndPassword(event.email, event.password);
-      commit('user', responseLogin.user);
+      commit('uid', response.user.uid);
+      commit('email', response.user.email);
+
+      const snapshot = await firebase.database().ref(`users/${getters.uid}`).once('value');
+      const user = snapshot.val();
+      commit('name', user.name);
+      commit('group', user.name);
     },
     async logout({ commit }) {
       await firebase.auth().signOut();
-      commit('user', {});
+      commit('uid', null);
+      commit('name', null);
+      commit('email', null);
+      commit('group', null);
     },
   },
   mutations: {
-    user(state, user) {
-      state.uid = user.uid;
-      state.name = user.displayName;
-      state.email = user.email;
-      state.category = detectCategory(user.email);
-    },
     uid(state, uid) {
       state.uid = uid;
-    },
-    name(state, name) {
-      state.name = name;
     },
     email(state, email) {
       state.email = email;
     },
-    category(state, category) {
-      state.category = category;
+    name(state, name) {
+      state.name = name;
+    },
+    group(state, group) {
+      state.group = group;
     },
   },
 };
