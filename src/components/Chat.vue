@@ -4,15 +4,24 @@
       {{ $t('chat.title') }}
       {{ active.name }}
     </h2>
-    {{ active }}
+    <Messages :partner="partner" />
+    <Input :partner="partner" />
   </div>
 </template>
 
 <script>
+import Messages from '@/components/Messages.vue';
+import Input from '@/components/Input.vue';
+
 export default {
   name: 'Chat',
 
-  props: {
+  components: {
+    Messages,
+    Input,
+  },
+
+  partner: {
     active: {
       type: Object,
       required: true,

@@ -3,7 +3,10 @@
     <template v-if="uid">
       <Logout />
       <Channels @switchChannel="activeChannel = $event" />
-      <Chat v-if="activeChannel" :active="activeChannel" />
+      <Chat
+        v-if="activeChannel"
+        :partner="activeChannel"
+      />
     </template>
     <template v-else>
       <Register />
