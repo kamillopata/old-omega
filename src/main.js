@@ -9,7 +9,6 @@ import en from './locale/en.json';
 const requiredEnvironmentalVariables = [
   process.env.VUE_APP_FIREBASE_WEB_API_KEY,
   process.env.VUE_APP_FIREBASE_PROJECT_ID,
-  process.env.VUE_APP_FIREBASE_MESSAGING_SEND_ID,
 ];
 
 if (requiredEnvironmentalVariables.filter((variable) => !variable).length) {
@@ -23,7 +22,6 @@ firebase.initializeApp({
   databaseURL: `https://${process.env.VUE_APP_FIREBASE_PROJECT_ID}.firebaseio.com`,
   projectId: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}`,
   storageBucket: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}.appspot.com`,
-  messagingSenderId: `${process.env.VUE_APP_FIREBASE_MESSAGING_SEND_ID}`,
 });
 
 Vue.use(VueI18n);
