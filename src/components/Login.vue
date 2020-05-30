@@ -1,20 +1,21 @@
 <template>
   <div>
-    <h1>Login</h1>
+    <h1 v-t="'login.title'" />
     <input
       v-model.trim="email"
       type="email"
-      placeholder="email"
+      :placeholder="$t('login.email')"
     ><br>
     <input
       v-model.trim="password"
       type="password"
-      placeholder="password"
+      :placeholder="$t('login.password')"
     ><br>
     <p>{{ error }}</p>
-    <button @click="login">
-      Login
-    </button>
+    <button
+      v-t="'login.cta'"
+      @click="login"
+    />
   </div>
 </template>
 
@@ -24,14 +25,15 @@ export default {
 
   data() {
     return {
-      email: '',
-      password: '',
-      error: '',
+      email: null,
+      password: null,
+      error: null,
     };
   },
 
   methods: {
     async login() {
+      this.error = null;
       const event = {
         email: this.email,
         password: this.password,

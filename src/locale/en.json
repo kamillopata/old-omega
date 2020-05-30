@@ -1,0 +1,14 @@
+{
+  "register": {
+    "title": "Registration",
+    "email": "Email",
+    "password": "Passowrd",
+    "cta": "Register"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Passowrd",
+    "cta": "Login"
+  }
+}

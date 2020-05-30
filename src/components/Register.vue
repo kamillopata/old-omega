@@ -1,20 +1,21 @@
 <template>
   <div>
-    <h1>Registration</h1>
+    <h1 v-t="'register.title'" />
     <input
       v-model.trim="email"
       type="email"
-      placeholder="email"
+      :placeholder="$t('register.email')"
     ><br>
     <input
       v-model.trim="password"
       type="password"
-      placeholder="password"
+      :placeholder="$t('register.password')"
     ><br>
     <p>{{ error }}</p>
-    <button @click="register">
-      Register
-    </button>
+    <button
+      v-t="'register.cta'"
+      @click="register"
+    />
   </div>
 </template>
 
@@ -24,14 +25,15 @@ export default {
 
   data() {
     return {
-      email: '',
-      password: '',
-      error: '',
+      email: null,
+      password: null,
+      error: null,
     };
   },
 
   methods: {
     async register() {
+      this.error = null;
       const event = {
         email: this.email,
         password: this.password,
