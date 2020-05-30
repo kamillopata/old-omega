@@ -11,7 +11,7 @@
       type="password"
       :placeholder="$t('login.password')"
     ><br>
-    <p>{{ error }}</p>
+    <p v-text="error" />
     <button
       v-t="'login.cta'"
       @click="login"

@@ -6,6 +6,7 @@
     >
     <Register v-if="!userId" />
     <Login v-if="!userId" />
+    <Logout v-if="userId" />
   </div>
 </template>
 
@@ -13,12 +14,14 @@
 import { mapGetters } from 'vuex';
 import Register from '@/components/Register.vue';
 import Login from '@/components/Login.vue';
+import Logout from '@/components/Logout.vue';
 
 export default {
   name: 'Home',
   components: {
     Register,
     Login,
+    Logout,
   },
   computed: {
     ...mapGetters({

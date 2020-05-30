@@ -11,7 +11,7 @@
       type="password"
       :placeholder="$t('register.password')"
     ><br>
-    <p>{{ error }}</p>
+    <p v-text="error" />
     <button
       v-t="'register.cta'"
       @click="register"

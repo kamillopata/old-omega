@@ -25,9 +25,13 @@ export default {
     async login({ commit }, event) {
       const response = await firebase.auth()
         .signInWithEmailAndPassword(event.email, event.password);
-      console.log(response.user);
       commit('id', response.user.uid);
       commit('email', response.user.email);
+    },
+    async logout({ commit }) {
+      await firebase.auth().signOut();
+      commit('id', null);
+      commit('email', null);
     },
   },
   mutations: {

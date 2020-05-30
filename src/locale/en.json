@@ -10,5 +10,8 @@
     "email": "Email",
     "password": "Passowrd",
     "cta": "Login"
+  },
+  "logout": {
+    "cta": "Logout"
   }
 }
