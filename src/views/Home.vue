@@ -4,9 +4,9 @@
       alt="Vue logo"
       src="../assets/logo.png"
     >
-    <Register v-if="!userId" />
-    <Login v-if="!userId" />
-    <Logout v-if="userId" />
+    <Register v-if="!uid" />
+    <Login v-if="!uid" />
+    <Logout v-if="uid" />
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userId: 'user/id',
+      uid: 'user/uid',
     }),
   },
 };

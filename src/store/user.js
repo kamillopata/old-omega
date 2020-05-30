@@ -4,12 +4,12 @@ import 'firebase/auth';
 export default {
   namespaced: true,
   state: {
-    id: null,
+    uid: null,
     email: null,
   },
   getters: {
-    id(state) {
-      return state.id;
+    uid(state) {
+      return state.uid;
     },
     email(state) {
       return state.email;
@@ -19,24 +19,24 @@ export default {
     async register({ commit }, event) {
       const response = await firebase.auth()
         .createUserWithEmailAndPassword(event.email, event.password);
-      commit('id', response.user.uid);
+      commit('uid', response.user.uid);
       commit('email', response.user.email);
     },
     async login({ commit }, event) {
       const response = await firebase.auth()
         .signInWithEmailAndPassword(event.email, event.password);
-      commit('id', response.user.uid);
+      commit('uid', response.user.uid);
       commit('email', response.user.email);
     },
     async logout({ commit }) {
       await firebase.auth().signOut();
-      commit('id', null);
+      commit('uid', null);
       commit('email', null);
     },
   },
   mutations: {
-    id(state, id) {
-      state.id = id;
+    uid(state, uid) {
+      state.uid = uid;
     },
     email(state, email) {
       state.email = email;
