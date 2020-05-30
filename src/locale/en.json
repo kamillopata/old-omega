@@ -1,4 +1,8 @@
 {
+  "router": {
+    "home": "Home",
+    "about": "About"
+  },
   "register": {
     "title": "Registration",
     "email": "Email",

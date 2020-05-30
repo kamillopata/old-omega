@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link>
+      <router-link
+        v-t="'router.home'"
+        to="/"
+      /> |
+      <router-link
+        v-t="'router.about'"
+        to="/about"
+      />
     </div>
     <router-view />
   </div>
