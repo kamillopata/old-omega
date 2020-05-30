@@ -18,5 +18,10 @@
   },
   "logout": {
     "cta": "Logout"
+  },
+  "channels": {
+    "title": "Available",
+    "customers": "Customers",
+    "stylists": "Stylists"
   }
 }

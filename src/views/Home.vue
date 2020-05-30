@@ -1,9 +1,14 @@
 <template>
   <div class="home">
-    <Register v-if="!uid" />
-    <Login v-if="!uid" />
-    <Logout v-if="uid" />
-    <Chat v-if="uid" />
+    <template v-if="uid">
+      <Logout />
+      <Channels />
+      <Chat />
+    </template>
+    <template v-else>
+      <Register />
+      <Login />
+    </template>
   </div>
 </template>
 
@@ -13,6 +18,8 @@ import Register from '@/components/Register.vue';
 import Login from '@/components/Login.vue';
 import Logout from '@/components/Logout.vue';
 import Chat from '@/components/Chat.vue';
+import Channels from '@/components/Channels.vue';
+
 
 export default {
   name: 'Home',
@@ -20,6 +27,7 @@ export default {
     Register,
     Login,
     Logout,
+    Channels,
     Chat,
   },
   computed: {

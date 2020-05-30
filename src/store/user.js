@@ -36,6 +36,7 @@ export default {
       commit('name', event.name);
       commit('group', detectGroup(getters.email));
       firebase.database().ref(`users/${getters.uid}`).set({
+        uid: getters.uid,
         name: getters.name,
         group: getters.group,
       });
@@ -49,7 +50,7 @@ export default {
       const snapshot = await firebase.database().ref(`users/${getters.uid}`).once('value');
       const user = snapshot.val();
       commit('name', user.name);
-      commit('group', user.name);
+      commit('group', user.group);
     },
     async logout({ commit }) {
       await firebase.auth().signOut();
