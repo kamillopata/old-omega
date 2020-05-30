@@ -4,13 +4,13 @@
       alt="Vue logo"
       src="../assets/logo.png"
     >
-    <Register />
-    <Login />
+    <Register v-if="!userId" />
+    <Login v-if="!userId" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapGetters } from 'vuex';
 import Register from '@/components/Register.vue';
 import Login from '@/components/Login.vue';
 
@@ -19,6 +19,11 @@ export default {
   components: {
     Register,
     Login,
+  },
+  computed: {
+    ...mapGetters({
+      userId: 'user/id',
+    }),
   },
 };
 </script>
